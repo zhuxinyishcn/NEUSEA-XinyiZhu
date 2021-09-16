@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lesson1_1</string>
+    <string name="app_name">Lesson1_2b</string>
     <string name="button_label_toast">Toast</string>
     <string name="button_label_count">Count</string>
     <string name="count_initial_value">0</string>

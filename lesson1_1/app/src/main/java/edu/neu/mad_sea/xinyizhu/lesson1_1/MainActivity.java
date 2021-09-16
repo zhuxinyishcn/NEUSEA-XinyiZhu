@@ -32,10 +32,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void countUp(View view) {
         ++mCount;
-        view.setBackgroundColor(Color.YELLOW);
+        // counter active when mCount > 0
+        if (mCount > 0) {
+            zeroButton.setBackgroundColor(Color.RED);
+        }
+        if (mCount % 2 == 0) {
+            view.setBackgroundColor(Color.YELLOW);
+        } else {
+            view.setBackgroundColor(Color.GREEN);
+        }
         if (mShowCount != null) {
             mShowCount.setText(Integer.toString(mCount));
-            if (mCount > 0) zeroButton.setBackgroundColor(Color.RED);
         }
     }
 
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mCount = 0;
         if (mShowCount != null)
             mShowCount.setText(Integer.toString(mCount));
+        // reset to grey again when the counter is 0
         zeroButton.setBackgroundColor(Color.rgb(170, 170, 170));
     }
 
