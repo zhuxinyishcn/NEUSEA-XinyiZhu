@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/button_toast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="187dp"
+        android:layout_height="129dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="68dp"
         android:background="@color/design_default_color_primary"
         android:onClick="showToast"
         android:text="@string/button_label_toast"
@@ -19,27 +19,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/button_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="181dp"
+        android:layout_height="126dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="252dp"
         android:background="@color/design_default_color_primary"
         android:onClick="countUp"
         android:text="@string/button_label_count"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/show_count"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.742"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_toast" />
 
     <TextView
         android:id="@+id/show_count"
-        android:layout_width="299dp"
-        android:layout_height="234dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="503dp"
+        android:layout_height="587dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
         android:background="#FFFF00"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -48,19 +48,16 @@
         android:textColor="@color/design_default_color_primary"
         android:textSize="160sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_toast"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/button_zero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="181dp"
+        android:layout_height="127dp"
+        android:layout_marginEnd="52dp"
         android:background="@android:color/darker_gray"
-        android:onClick="resetZero"
         android:text="@string/zero"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_toast" />
+        app:layout_constraintEnd_toStartOf="@+id/show_count"
+        tools:layout_editor_absoluteY="257dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

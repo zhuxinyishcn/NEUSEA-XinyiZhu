@@ -4,12 +4,14 @@ plugins {
 
 android {
     compileSdk 31
+
     defaultConfig {
-        applicationId "edu.neu.mad_sea.xinyizhu.lesson1_1"
+        applicationId "edu.neu.mad_sea.xinyizhu.lesson1_3"
         minSdk 28
         targetSdk 31
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
