@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">lesson2_1</string>
+    <string name="app_name">Todo: XYZ</string>
     <string name="button_main">+</string>
     <string name="button_second">SAVE</string>
     <string name="editText_second">Task Title</string>
     <string name="cancel">Cancel</string>
     <string name="activity2_name">actvity2</string>
+    <string name="toast_message">Task Done!</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

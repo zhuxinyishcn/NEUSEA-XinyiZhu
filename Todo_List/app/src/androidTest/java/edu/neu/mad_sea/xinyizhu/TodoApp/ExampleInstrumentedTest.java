@@ -1,4 +1,4 @@
-package edu.neu.mad_sea.xinyizhu.lesson2_1;
+package edu.neu.mad_sea.xinyizhu.TodoApp;
 
 import android.content.Context;
 

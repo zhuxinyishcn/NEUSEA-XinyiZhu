@@ -1,4 +1,4 @@
-package edu.neu.mad_sea.xinyizhu.lesson2_1;
+package edu.neu.mad_sea.xinyizhu.TodoApp;
 
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,8 +23,8 @@ public class TaskDataResource {
         return instance;
     }
 
-    public void addItem(String item) {
-        itemsAdapter.add(item);
+    public static void addItem(String item) {
+        MainActivity.itemsAdapter.add(item);
         itemsAdapter.notifyDataSetChanged();
     }
 

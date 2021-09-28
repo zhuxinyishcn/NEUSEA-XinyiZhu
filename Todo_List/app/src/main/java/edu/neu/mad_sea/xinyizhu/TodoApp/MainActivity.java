@@ -1,18 +1,15 @@
-package edu.neu.mad_sea.xinyizhu.lesson2_1;
+package edu.neu.mad_sea.xinyizhu.TodoApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     TaskDataResource taskDataResource = TaskDataResource.getInstance();
     ArrayList<String> items = new ArrayList<>();
-    ArrayAdapter<String> itemsAdapter = taskDataResource.itemsAdapter;
+    static ArrayAdapter<String> itemsAdapter;
     ListView lvItems = taskDataResource.lvItems;
 
     @Override
@@ -35,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         lvItems = findViewById(R.id.lvItems);
         itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
-        items.add("Third Item");
-        items.add("Forth Item");
-        items.add("Fifth Item");
-        items.add("Sixth Item");
+        items.add("First Item\nDecoration: res");
+        items.add("Second Item\nDecoration: res");
+        items.add("Third Item\nDecoration: res");
+        items.add("Forth Item\nDecoration: res");
+        items.add("Fifth Item\nDecoration: res");
+        items.add("Sixth Item\nDecoration: res");
         setupListViewListener();
     }
 
@@ -61,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         items.remove(pos);
                         // Refresh the adapter
                         itemsAdapter.notifyDataSetChanged();
+                        Toast toast = Toast.makeText(MainActivity.this, R.string.toast_message, Toast.LENGTH_SHORT);
+                        toast.show();
                         // Return true consumes the long click event (marks it handled)
                         return true;
                     }

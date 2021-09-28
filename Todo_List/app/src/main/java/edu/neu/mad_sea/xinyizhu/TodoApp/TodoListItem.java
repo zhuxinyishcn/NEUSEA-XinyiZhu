@@ -1,9 +1,5 @@
-package edu.neu.mad_sea.xinyizhu.lesson2_1;
+package edu.neu.mad_sea.xinyizhu.TodoApp;
 
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class TodoListItem {
@@ -20,4 +16,5 @@ public class TodoListItem {
         this.rememberFlag = rememberFlag;
         this.notificationTime = notificationTime;
     }
+
 }
