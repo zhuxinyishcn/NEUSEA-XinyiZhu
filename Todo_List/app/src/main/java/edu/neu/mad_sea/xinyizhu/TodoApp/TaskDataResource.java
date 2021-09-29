@@ -8,24 +8,19 @@ import java.util.ArrayList;
 
 public class TaskDataResource {
     private static TaskDataResource instance;
-    static ArrayAdapter<String> itemsAdapter;
-    static ListView lvItems;
     static ArrayList<String> items = new ArrayList<>();
 
-    private TaskDataResource() {
+    private TaskDataResource(ArrayList<String> items) {
+        TaskDataResource.items = items;
     }
 
 
-    public static TaskDataResource getInstance() {
+    public static TaskDataResource getInstance(ArrayList<String> items) {
         if (instance == null) {
-            instance = new TaskDataResource();
+            instance = new TaskDataResource(items);
         }
         return instance;
     }
 
-    public static void addItem(String item) {
-        MainActivity.itemsAdapter.add(item);
-        itemsAdapter.notifyDataSetChanged();
-    }
 
 }

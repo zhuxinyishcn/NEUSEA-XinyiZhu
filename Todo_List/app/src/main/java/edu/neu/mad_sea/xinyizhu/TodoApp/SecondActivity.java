@@ -2,16 +2,20 @@ package edu.neu.mad_sea.xinyizhu.TodoApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
-    TaskDataResource taskDataResource = TaskDataResource.getInstance();
-    private ArrayAdapter<String> itemsAdapter = taskDataResource.itemsAdapter;
+    TaskDataResource taskDataResource = TaskDataResource.getInstance(new ArrayList<>());
+//    private ArrayAdapter<String> itemsAdapter = TaskDataResource.getArrayAdapter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,8 @@ public class SecondActivity extends AppCompatActivity {
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.Task);
         String itemText = etNewItem.getText().toString();
-        Log.d(MainActivity.class.getSimpleName(), itemText);
-//        MainActivity.itemsAdapter.add(itemText);
-        taskDataResource.addItem(itemText);
+        TaskDataResource.items.add(itemText);
+        finish();
     }
 
 }

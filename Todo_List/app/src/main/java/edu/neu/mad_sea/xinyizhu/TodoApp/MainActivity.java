@@ -19,11 +19,10 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.class.getSimpleName();
     public static final String EXTRA_MESSAGE =
             "com.example.android.twoactivities.extra.MESSAGE";
-
-    TaskDataResource taskDataResource = TaskDataResource.getInstance();
     ArrayList<String> items = new ArrayList<>();
-    static ArrayAdapter<String> itemsAdapter;
-    ListView lvItems = taskDataResource.lvItems;
+    TaskDataResource taskDataResource = TaskDataResource.getInstance(items);
+    ArrayAdapter<String> itemsAdapter;
+    ListView lvItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
