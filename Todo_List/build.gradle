@@ -15,3 +15,8 @@ buildscript {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    // Room components
+    roomVersion = "2.3.0"
+}

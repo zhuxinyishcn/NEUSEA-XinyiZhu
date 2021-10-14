@@ -10,22 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lesson2_1">
         <activity
-            android:name="edu.neu.mad_sea.xinyizhu.TodoApp.SecondActivity"
-            android:label="@string/activity2_name"
-            android:parentActivityName="edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.neu.mad_sea.xinyizhu.TodoApp.SecondActivity" />
-        </activity>
-        <activity
-            android:name="edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity"
-            android:exported="true">
+            android:name="edu.neu.mad_sea.xinyizhu.TodoApp.CreateTask"
+            android:exported="true"
+            android:label="@string/activity2_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity" />
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@
     <string name="cancel">Cancel</string>
     <string name="activity2_name">actvity2</string>
     <string name="toast_message">Task Done!</string>
+    <string name="remember_me">Remember Me ?</string>
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

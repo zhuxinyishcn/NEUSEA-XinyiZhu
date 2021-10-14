@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/drawable/ic_baseline_add.xml" value="0.3828125" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_second.xml" value="0.36666666666666664" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/remember_layout.xml" value="0.2210144927536232" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/task_layout.xml" value="0.2246376811594203" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/tasks_layout.xml" value="0.4" />
         <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/lesson2_1/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/lesson2_1/app/src/main/res/layout/activity_second.xml" value="0.36666666666666664" />
         <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/lesson2_2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
@@ -17,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2246376811594203" />
+      </ProjectState>
+    </option>
   </component>
 </project>
