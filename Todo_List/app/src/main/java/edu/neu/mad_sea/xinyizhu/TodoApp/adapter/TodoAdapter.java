@@ -1,59 +1,80 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity;
+import edu.neu.mad_sea.xinyizhu.TodoApp.R;
+import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import java.util.List;
 
-import edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity;
-import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
-import edu.neu.mad_sea.xinyizhu.TodoApp.R;
-
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
-    private final MainActivity activity;
-    private List<ToDoModel> toDoModelList;
 
-    public TodoAdapter(MainActivity activity) {
-        this.activity = activity;
+  private final MainActivity activity;
+  private List<ToDoModel> toDoModelList;
+  private OnTodoListener mOnTodoListener;
+
+  public TodoAdapter(MainActivity activity, OnTodoListener onTodoListener) {
+    this.activity = activity;
+    this.mOnTodoListener = onTodoListener;
+  }
+
+  public void setToDoModelList(List<ToDoModel> toDoModelList) {
+    this.toDoModelList = toDoModelList;
+    notifyDataSetChanged();
+  }
+
+  @NonNull
+  @Override
+  public TodoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View itemView = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.task_items, parent, false);
+    return new ViewHolder(itemView, mOnTodoListener);
+
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull TodoAdapter.ViewHolder holder, int position) {
+    ToDoModel item = toDoModelList.get(position);
+    // check if complete
+    holder.task.setChecked(item.getStatus() != 0);
+    holder.task.setText(item.getTitle());
+    holder.due.setText(item.getDueTime());
+  }
+
+  @Override
+  public int getItemCount() {
+    return toDoModelList.size();
+  }
+
+  public interface OnTodoListener {
+
+    void onTodoClick(int position);
+  }
+
+  public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+    CheckBox task;
+    TextView due;
+    OnTodoListener onTodoListener;
+
+    ViewHolder(View view, OnTodoListener onTodoListener) {
+      super(view);
+      task = view.findViewById(R.id.todoCheckBox);
+      due = view.findViewById(R.id.dueTime);
+      this.onTodoListener = onTodoListener;
+      view.setOnClickListener(this);
     }
 
-    public void setToDoModelList(List<ToDoModel> toDoModelList) {
-        this.toDoModelList = toDoModelList;
-        notifyDataSetChanged();
-    }
-
-    @NonNull
     @Override
-    public TodoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_items, parent, false);
-        return new ViewHolder(itemView);
-
+    public void onClick(View view) {
+      Log.d("SOME info", String.valueOf(getAdapterPosition()));
+      onTodoListener.onTodoClick(getAbsoluteAdapterPosition());
     }
-
-    @Override
-    public void onBindViewHolder(@NonNull TodoAdapter.ViewHolder holder, int position) {
-        ToDoModel item = toDoModelList.get(position);
-        holder.task.setText(item.getTitle());
-        // check if complete
-        holder.task.setChecked(item.getStatus() != 0);
-    }
-
-    @Override
-    public int getItemCount() {
-        return toDoModelList.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        CheckBox task;
-
-        ViewHolder(View view) {
-            super(view);
-            task = view.findViewById(R.id.todoCheckBox);
-        }
-    }
+  }
 }
