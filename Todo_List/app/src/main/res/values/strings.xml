@@ -1,20 +1,19 @@
 <resources>
-    <string name="app_name">Todo: XYZ</string>
-    <string name="button_main">+</string>
-    <string name="button_second">SAVE</string>
-    <string name="editText_second">Task Title</string>
-    <string name="cancel">Cancel</string>
-    <string name="activity2_name">actvity2</string>
-    <string name="toast_message">Task Done!</string>
-    <string name="remember_me">Remember Me ?</string>
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
+  <string name="app_name">Todo: XYZ</string>
+  <string name="button_main">+</string>
+  <string name="button_second">SAVE</string>
+  <string name="editText_second">Task Title</string>
+  <string name="cancel">Cancel</string>
+  <string name="activity2_name">actvity2</string>
+  <string name="toast_message">Task Done!</string>
+  <string-array name="planets_array">
+    <item>Mercury</item>
+    <item>Venus</item>
+    <item>Earth</item>
+    <item>Mars</item>
+    <item>Jupiter</item>
+    <item>Saturn</item>
+    <item>Uranus</item>
+    <item>Neptune</item>
+  </string-array>
 </resources>

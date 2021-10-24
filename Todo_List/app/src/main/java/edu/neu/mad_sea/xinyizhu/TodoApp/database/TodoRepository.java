@@ -1,31 +1,31 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp.database;
 
 import android.content.Context;
-
 import androidx.lifecycle.LiveData;
-
+import edu.neu.mad_sea.xinyizhu.TodoApp.async.InsertAsyncTask;
+import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import java.util.List;
 
-import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
-
 public class TodoRepository {
-    private ToDoRoomDatabase mTodoDatabase;
 
-    public TodoRepository(Context context) {
-        this.mTodoDatabase = ToDoRoomDatabase.getInstance(context);
-    }
+  private ToDoRoomDatabase mTodoDatabase;
 
-    public void updateTodo(ToDoModel toDoModel) {
-    }
+  public TodoRepository(Context context) {
+    this.mTodoDatabase = ToDoRoomDatabase.getInstance(context);
+  }
 
-    public void insertTodo(ToDoModel toDoModel) {
-    }
+  public void updateTodo(ToDoModel toDoModel) {
+  }
 
-    public LiveData<List<ToDoModel>> retrieveTodoItem() {
-        return null;
-    }
+  public void insertTodo(ToDoModel toDoModel) {
+    new InsertAsyncTask(mTodoDatabase.getTodoDao()).execute(toDoModel);
+  }
 
-    public void deleteTodo(ToDoModel toDoModel) {
+  public LiveData<List<ToDoModel>> retrieveTodoItem() {
+    return mTodoDatabase.getTodoDao().getTodos();
+  }
 
-    }
+  public void deleteTodo(ToDoModel toDoModel) {
+
+  }
 }

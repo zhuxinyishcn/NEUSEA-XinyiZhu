@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <Button
+    android:id="@+id/button_main"
+
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginBottom="32dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:backgroundTint="@color/design_default_color_primary"
+    android:onClick="createTodo"
+    android:src="@drawable/ic_baseline_add"
+    android:text="@string/button_main"
+    android:textSize="24sp" />
+
+  <TextView
+    android:id="@+id/taskText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
+    android:layout_marginStart="16dp"
+    android:text="Task to Do"
+    android:textSize="20sp" />
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/taskRecycleView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/taskText"
+    android:nestedScrollingEnabled="true"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
-    <TextView
-        android:id="@+id/taskText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Task to Do"
-        android:textSize="20sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecycleView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/taskText"
-        android:nestedScrollingEnabled="true"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/button_main"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="32dp"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:onClick="launchSecondActivity"
-        android:src="@drawable/ic_baseline_add"
-        android:text="@string/button_main"
-        android:textSize="24sp" />
+  </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

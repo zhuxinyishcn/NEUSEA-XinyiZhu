@@ -2,32 +2,75 @@ package edu.neu.mad_sea.xinyizhu.TodoApp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
+import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 
 public class CreateTask extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_task_layout);
-        final Intent i = new Intent(CreateTask.this, MainActivity.class);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(i);
-                finish();
-            }
-        }, 1000);
-    }
+  private EditText mEditText;
+  private TextView mTextView;
 
-//    public void onAddItem(View v) {
-//        EditText etNewItem = (EditText) findViewById(R.id.Task);
-//        String itemText = etNewItem.getText().toString();
-//        TaskDataResource.items.add(itemText);
-//        Log.d("list", TaskDataResource.items.toString());
-//        finish();
-//    }
+  private ToDoModel mToDoModel;
+  private boolean newTodoFlag = false;
+  private TodoRepository mTodoRepository;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.create_task_layout);
+    final Intent i = new Intent(CreateTask.this, MainActivity.class);
+    mEditText = findViewById(R.id.TaskText);
+    mTextView = findViewById(R.id.TaskDetail);
+    mTodoRepository = new TodoRepository(this);
+    if (getTodoItem()) {
+      // This is a create a todo item
+      initTodoProperties();
+    } else {
+      setTodoProperties();
+    }
+  }
+
+  private void saveTodo() {
+    if (newTodoFlag) {
+      saveTodo2Repository();
+    } else {
+
+    }
+  }
+
+  private void saveTodo2Repository() {
+    mTodoRepository.insertTodo(mToDoModel);
+  }
+
+  private boolean getTodoItem() {
+    if (getIntent().hasExtra("todo_item")) {
+      this.mToDoModel = getIntent().getParcelableExtra("todo_item");
+      return newTodoFlag;
+    }
+    this.newTodoFlag = true;
+    return true;
+  }
+
+  private void initTodoProperties() {
+    mEditText.setText("Wirte your title!");
+    mTextView.setText("Write Detail info!");
+  }
+
+  private void setTodoProperties() {
+    mEditText.setText(mToDoModel.getTitle());
+    mTextView.setText(mToDoModel.getDetail());
+  }
+
+
+  public void cancelTodo(View v) {
+
+    saveTodo();
+
+    finish();
+  }
 
 }

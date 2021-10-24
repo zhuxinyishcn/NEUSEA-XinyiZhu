@@ -1,62 +1,86 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center_vertical"
+  android:weightSum="100">
+
+  <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
     <Button
-        android:id="@+id/button_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:onClick="onAddItem"
-        android:text="@string/button_second" />
+      android:id="@+id/button_second"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:onClick="onAddItem"
+      android:text="@string/button_second" />
 
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/cancel" />
+      android:id="@+id/button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:onClick="cancelTodo"
+      android:text="@string/cancel" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Deadline"
-        android:layout_marginTop="20dp"
-        android:text="Day/Time Remind" />
-
+      android:id="@+id/button2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_below="@+id/Deadline"
+      android:text="Day/Time Remind" />
 
     <EditText
-        android:id="@+id/TaskText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Title Task" />
+      android:id="@+id/Deadline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginStart="20dp"
+      android:layout_marginEnd="20dp"
+      android:layout_below="@+id/TaskText"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="Deadline" />
+
+    <EditText
+      android:id="@+id/TaskText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="Title Task" />
+
+    <EditText
+      android:id="@+id/TaskDetail"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="60dp"
+      android:layout_below="@id/spinner"
+      android:padding="5dp"
+      android:text="some text">
+
+    </EditText>
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp" />
+      android:id="@+id/spinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginStart="20dp"
+      android:layout_marginEnd="20dp"
+      android:layout_below="@+id/button2" />
 
-    <EditText
-        android:id="@+id/Deadline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TaskText"
-        android:layout_margin="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Deadline" />
-</RelativeLayout>
+  </RelativeLayout>
+
+</LinearLayout>
+
 
 

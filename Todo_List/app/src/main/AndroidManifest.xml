@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.neu.mad_sea.xinyizhu.TodoApp">
+  package="edu.neu.mad_sea.xinyizhu.TodoApp">
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Lesson2_1">
-        <activity
-            android:name="edu.neu.mad_sea.xinyizhu.TodoApp.CreateTask"
-            android:exported="true"
-            android:label="@string/activity2_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity" />
-    </application>
+  <application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.Lesson2_1">
+    <activity
+      android:exported="true"
+      android:label="@string/activity2_name"
+      android:name="edu.neu.mad_sea.xinyizhu.TodoApp.CreateTask">
+      <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="edu.neu.mad_sea.xinyizhu.TodoApp.CreateTask" />
+    </activity>
+    <activity
+      android:exported="true"
+      android:name="edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
 
 </manifest>
