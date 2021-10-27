@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.neu.mad_sea.xinyizhu.TodoApp.adapter.TodoAdapter;
 import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
+import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     this.mTodoRepository = new TodoRepository(this);
     initRecycleView();
     retrieveNotes();
-    mTodoRepository.insertTodo(new ToDoModel(1, 0, "test", "some detail info", "2021.5.1334"));
   }
 
   private void initRecycleView() {
@@ -53,12 +53,14 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     new ItemTouchHelper(simpleCallback).attachToRecyclerView(taskRecyclerView);
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
-    ToDoModel test = new ToDoModel(1, 0, "test", "some detail info", "2021.5.22");
-    taskList.add(test);
-    taskList.add(test);
-    taskList.add(test);
-    taskList.add(test);
-    todoAdapter.setToDoModelList(taskList);
+    mTodoRepository
+        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.getCurrentTimestamp()));
+    mTodoRepository
+        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.getCurrentTimestamp()));
+    mTodoRepository
+        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.getCurrentTimestamp()));
+    mTodoRepository
+        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.getCurrentTimestamp()));
   }
 
   private void retrieveNotes() {
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         }
         if (toDoModels != null) {
           taskList.addAll(toDoModels);
+          todoAdapter.setToDoModelList(taskList);
         }
         todoAdapter.notifyDataSetChanged();
       }
@@ -92,8 +95,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     taskList.remove(toDoModel);
     Toast toast = Toast.makeText(this, toDoModel.getTitle() + "Delete!:)", Toast.LENGTH_LONG);
     toast.show();
+    mTodoRepository.deleteTodo(toDoModel);
     todoAdapter.notifyDataSetChanged();
   }
+
+
 }
 
 

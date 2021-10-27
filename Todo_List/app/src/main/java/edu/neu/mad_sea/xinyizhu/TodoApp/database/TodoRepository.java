@@ -2,7 +2,9 @@ package edu.neu.mad_sea.xinyizhu.TodoApp.database;
 
 import android.content.Context;
 import androidx.lifecycle.LiveData;
+import edu.neu.mad_sea.xinyizhu.TodoApp.async.DeleteAsyncTask;
 import edu.neu.mad_sea.xinyizhu.TodoApp.async.InsertAsyncTask;
+import edu.neu.mad_sea.xinyizhu.TodoApp.async.UpdateAsyncTask;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class TodoRepository {
   }
 
   public void updateTodo(ToDoModel toDoModel) {
+    new UpdateAsyncTask(mTodoDatabase.getTodoDao()).execute(toDoModel);
   }
 
   public void insertTodo(ToDoModel toDoModel) {
@@ -26,6 +29,6 @@ public class TodoRepository {
   }
 
   public void deleteTodo(ToDoModel toDoModel) {
-
+    new DeleteAsyncTask(mTodoDatabase.getTodoDao()).execute(toDoModel);
   }
 }

@@ -41,8 +41,7 @@ public class ToDoModel implements Parcelable {
 
   }
 
-  public ToDoModel(int id, int status, String title, String detail, String dueTime) {
-    this.id = id;
+  public ToDoModel(int status, String title, String detail, String dueTime) {
     this.status = status;
     this.title = title;
     this.detail = detail;

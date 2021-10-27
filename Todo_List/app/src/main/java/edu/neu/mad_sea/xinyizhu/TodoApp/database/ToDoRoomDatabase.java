@@ -23,5 +23,4 @@ public abstract class ToDoRoomDatabase extends RoomDatabase {
 
   public abstract TodoItemDao getTodoDao();
 
-//(^\\\n\.|\[\[first_name\]\])+
 }
