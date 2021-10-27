@@ -49,15 +49,8 @@ public class ToDoModel implements Parcelable {
   }
 
   public String getTitle() {
-    StringBuilder sb = new StringBuilder(title);
-    sb.append("\n");
-    if (detail.length() > 3) {
-      sb.append(detail.substring(0, 3));
-    } else {
-      sb.append(detail);
-    }
-    sb.append("...");
-    return sb.toString();
+
+    return this.title;
   }
 
   public void setTitle(String title) {

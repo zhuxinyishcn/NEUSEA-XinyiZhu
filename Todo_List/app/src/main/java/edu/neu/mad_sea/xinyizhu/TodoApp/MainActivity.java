@@ -53,12 +53,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     new ItemTouchHelper(simpleCallback).attachToRecyclerView(taskRecyclerView);
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
-    mTodoRepository
-        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.getCurrentTimestamp()));
-    mTodoRepository
-        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.getCurrentTimestamp()));
-    mTodoRepository
-        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.getCurrentTimestamp()));
+
     mTodoRepository
         .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.getCurrentTimestamp()));
   }

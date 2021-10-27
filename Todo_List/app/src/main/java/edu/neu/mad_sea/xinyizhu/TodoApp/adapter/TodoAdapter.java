@@ -49,6 +49,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
   @Override
   public int getItemCount() {
+
     return toDoModelList.size();
   }
 
@@ -73,7 +74,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     @Override
     public void onClick(View view) {
-      Log.d("SOME info", String.valueOf(getAdapterPosition()));
       onTodoListener.onTodoClick(getAbsoluteAdapterPosition());
     }
   }
