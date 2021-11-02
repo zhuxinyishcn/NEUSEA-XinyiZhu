@@ -11,21 +11,20 @@ public class Utility {
       "yyyy-MM-dd HH:mm:ss");
 
   public static String getCurrentTimestamp() {
-
     return simpleDateFormat.format(new Date());
-
   }
 
   public static Calendar date2Cal(String time) {
-
+    Calendar cal = Calendar.getInstance();
     Date d = new Date();
     try {
-      simpleDateFormat.parse(getCurrentTimestamp());
+      d = simpleDateFormat.parse(time);
     } catch (ParseException e) {
-      System.out.println("date issue");
+      System.out.println("date issue: please check date format");
     }
-    Calendar cal = Calendar.getInstance();
-    cal.setTime(d);
+    if (d != null) {
+      cal.setTime(d);
+    }
     return cal;
   }
 

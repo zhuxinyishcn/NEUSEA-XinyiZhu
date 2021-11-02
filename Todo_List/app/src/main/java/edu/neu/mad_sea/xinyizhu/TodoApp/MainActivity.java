@@ -17,11 +17,8 @@ import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import edu.neu.mad_sea.xinyizhu.TodoApp.notification.AlertReceiver;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoListener {
@@ -52,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     this.mTodoRepository = new TodoRepository(this);
     initRecycleView();
     retrieveNotes();
+    setReminder4TodoItem();
   }
 
   private void initRecycleView() {
@@ -60,10 +58,9 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     new ItemTouchHelper(simpleCallback).attachToRecyclerView(taskRecyclerView);
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
-
+    // you can test the notification bu here
     mTodoRepository
-        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.futureTime()));
-    sendChannel(Utility.futureTime());
+        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.futureTime()));
   }
 
   private void retrieveNotes() {
@@ -74,9 +71,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
       if (toDoModels != null) {
         taskList.addAll(toDoModels);
         todoAdapter.setToDoModelList(taskList);
+        setReminder4TodoItem();
       }
       todoAdapter.notifyDataSetChanged();
     });
+
   }
 
   @Override
@@ -103,19 +102,22 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     Intent intent = new Intent(this, AlertReceiver.class);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    Date d = new Date();
-    Calendar cal = Calendar.getInstance();
-    try {
-      df.parse(time);
-    } catch (ParseException e) {
-      System.out.println("date isssue");
-    }
-
-    cal.setTime(d);
+    Calendar cal = Utility.date2Cal(time);
     alarmManager.setExact(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent);
   }
 
+  private void setReminder4TodoItem() {
+    taskList.forEach(toDoModel -> sendChannel(toDoModel.getDueTime()));
+  }
+
+  @Override
+  protected void onDestroy() {
+    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+    Intent intent = new Intent(this, AlertReceiver.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+    alarmManager.cancel(pendingIntent);
+    super.onDestroy();
+  }
 }
 
 

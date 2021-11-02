@@ -1,6 +1,5 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp.notification;
 
-import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

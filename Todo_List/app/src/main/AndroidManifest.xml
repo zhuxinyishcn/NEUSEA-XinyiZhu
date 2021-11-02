@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="edu.neu.mad_sea.xinyizhu.TodoApp">
 
-  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -29,5 +28,6 @@
 
     <receiver android:name=".notification.AlertReceiver" />
   </application>
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
 </manifest>
