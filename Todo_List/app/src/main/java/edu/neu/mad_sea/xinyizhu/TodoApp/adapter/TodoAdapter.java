@@ -1,6 +1,5 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity;
 import edu.neu.mad_sea.xinyizhu.TodoApp.R;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
   private final MainActivity activity;
-  private List<ToDoModel> toDoModelList;
+  private List<ToDoModel> toDoModelList = new ArrayList<>();
   private OnTodoListener mOnTodoListener;
 
   public TodoAdapter(MainActivity activity, OnTodoListener onTodoListener) {

@@ -14,7 +14,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"
-android:onClick="saveTodo"
+      android:onClick="saveTodo"
       android:text="@string/button_second" />
 
 
@@ -64,8 +64,8 @@ android:onClick="saveTodo"
       android:layout_marginBottom="60dp"
       android:layout_below="@id/spinner"
       android:padding="5dp"
-      android:textAlignment="center"
-      android:text="some text">
+      android:text="some text"
+      android:textAlignment="center">
 
     </EditText>
 

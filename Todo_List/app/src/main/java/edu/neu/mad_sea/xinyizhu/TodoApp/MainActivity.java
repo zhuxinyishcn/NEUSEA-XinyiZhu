@@ -1,20 +1,27 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.neu.mad_sea.xinyizhu.TodoApp.adapter.TodoAdapter;
 import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
+import edu.neu.mad_sea.xinyizhu.TodoApp.notification.AlertReceiver;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoListener {
@@ -55,22 +62,20 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     taskRecyclerView.setAdapter(todoAdapter);
 
     mTodoRepository
-        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.getCurrentTimestamp()));
+        .insertTodo(new ToDoModel(0, "test", "some detail info", Utility.futureTime()));
+    sendChannel(Utility.futureTime());
   }
 
   private void retrieveNotes() {
-    mTodoRepository.retrieveTodoItem().observe(this, new Observer<List<ToDoModel>>() {
-      @Override
-      public void onChanged(List<ToDoModel> toDoModels) {
-        if (taskList.size() > 0) {
-          taskList.clear();
-        }
-        if (toDoModels != null) {
-          taskList.addAll(toDoModels);
-          todoAdapter.setToDoModelList(taskList);
-        }
-        todoAdapter.notifyDataSetChanged();
+    mTodoRepository.retrieveTodoItem().observe(this, toDoModels -> {
+      if (taskList.size() > 0) {
+        taskList.clear();
       }
+      if (toDoModels != null) {
+        taskList.addAll(toDoModels);
+        todoAdapter.setToDoModelList(taskList);
+      }
+      todoAdapter.notifyDataSetChanged();
     });
   }
 
@@ -94,6 +99,22 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     todoAdapter.notifyDataSetChanged();
   }
 
+  public void sendChannel(String time) {
+    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+    Intent intent = new Intent(this, AlertReceiver.class);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Date d = new Date();
+    Calendar cal = Calendar.getInstance();
+    try {
+      df.parse(time);
+    } catch (ParseException e) {
+      System.out.println("date isssue");
+    }
+
+    cal.setTime(d);
+    alarmManager.setExact(AlarmManager.RTC, cal.getTimeInMillis(), pendingIntent);
+  }
 
 }
 
