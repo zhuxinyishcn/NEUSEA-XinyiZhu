@@ -7,13 +7,11 @@
   <string name="activity2_name">actvity2</string>
   <string name="toast_message">Task Done!</string>
   <string-array name="planets_array">
-    <item>Mercury</item>
-    <item>Venus</item>
-    <item>Earth</item>
-    <item>Mars</item>
-    <item>Jupiter</item>
-    <item>Saturn</item>
-    <item>Uranus</item>
-    <item>Neptune</item>
+    <item>Level: Urgent</item>
+    <item>Level: Normal</item>
+    <item>Level: Important</item>
+    <item>Level: Planned</item>
+    <item>Level: Assigned</item>
+    <item>Level: Daily</item>
   </string-array>
 </resources>

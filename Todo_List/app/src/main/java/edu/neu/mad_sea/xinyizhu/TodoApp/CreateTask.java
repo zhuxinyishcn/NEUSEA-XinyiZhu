@@ -3,7 +3,9 @@ package edu.neu.mad_sea.xinyizhu.TodoApp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
@@ -23,6 +25,7 @@ public class CreateTask extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.create_task_layout);
+    setSpinner();
     final Intent i = new Intent(CreateTask.this, MainActivity.class);
     mEditText = findViewById(R.id.TaskText);
     mTextView = findViewById(R.id.TaskDetail);
@@ -33,6 +36,19 @@ public class CreateTask extends AppCompatActivity {
     } else {
       setTodoProperties();
     }
+
+
+  }
+
+  private void setSpinner() {
+    Spinner spinner = findViewById(R.id.spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        R.array.planets_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+    spinner.setAdapter(adapter);
   }
 
   private void updateNote() {

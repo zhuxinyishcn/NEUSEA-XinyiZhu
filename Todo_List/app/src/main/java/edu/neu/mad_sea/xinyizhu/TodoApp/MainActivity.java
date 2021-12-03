@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     new ItemTouchHelper(simpleCallback).attachToRecyclerView(taskRecyclerView);
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
-    // you can test the notification bu here
+    //   todo: you can test the notification bu here
 //    mTodoRepository
 //        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.futureTime()));
   }
@@ -93,7 +93,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
 
   private void deleteTodo(ToDoModel toDoModel) {
     taskList.remove(toDoModel);
-    Toast toast = Toast.makeText(this, toDoModel.getTitle() + " completely done!:)", Toast.LENGTH_LONG);
+    Toast toast = Toast
+        .makeText(this, toDoModel.getTitle() + " completely done!:)", Toast.LENGTH_LONG);
     toast.show();
     mTodoRepository.deleteTodo(toDoModel);
     todoAdapter.notifyDataSetChanged();
