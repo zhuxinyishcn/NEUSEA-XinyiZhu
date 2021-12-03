@@ -79,6 +79,7 @@ public class CreateTask extends AppCompatActivity {
       saveTodo2Repository();
       finish();
     } else {
+      mToDoModel.setDueTime(Utility.futureTime());
       updateNote();
     }
   }

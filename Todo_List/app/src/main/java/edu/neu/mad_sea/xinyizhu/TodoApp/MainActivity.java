@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     this.mTodoRepository = new TodoRepository(this);
     initRecycleView();
     retrieveNotes();
-    setReminder4TodoItem();
+    // todo: test to remind people
+//    setReminder4TodoItem();
   }
 
   private void initRecycleView() {
@@ -59,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
     // you can test the notification bu here
-    mTodoRepository
-        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.futureTime()));
+//    mTodoRepository
+//        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.futureTime()));
   }
 
   private void retrieveNotes() {
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
 
   private void deleteTodo(ToDoModel toDoModel) {
     taskList.remove(toDoModel);
-    Toast toast = Toast.makeText(this, toDoModel.getTitle() + "Delete!:)", Toast.LENGTH_LONG);
+    Toast toast = Toast.makeText(this, toDoModel.getTitle() + " completely done!:)", Toast.LENGTH_LONG);
     toast.show();
     mTodoRepository.deleteTodo(toDoModel);
     todoAdapter.notifyDataSetChanged();

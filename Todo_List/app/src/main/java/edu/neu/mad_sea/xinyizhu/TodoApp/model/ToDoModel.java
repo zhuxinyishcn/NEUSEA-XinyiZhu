@@ -58,7 +58,7 @@ public class ToDoModel implements Parcelable {
   }
 
   public String getDueTime() {
-    return dueTime;
+    return dueTime.substring(0,10);
   }
 
   public void setDueTime(String dueTime) {
@@ -66,6 +66,9 @@ public class ToDoModel implements Parcelable {
   }
 
   public String getDetail() {
+    if (detail.length() > 20) {
+      return detail.substring(0,20);
+    }
     return detail;
   }
 

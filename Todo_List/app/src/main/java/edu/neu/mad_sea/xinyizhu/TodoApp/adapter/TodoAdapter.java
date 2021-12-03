@@ -45,6 +45,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     holder.task.setChecked(item.getStatus() != 0);
     holder.task.setText(item.getTitle());
     holder.due.setText(item.getDueTime());
+    holder.description.setText("Description:" + item.getDetail().concat("..."));
   }
 
   @Override
@@ -62,12 +63,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     CheckBox task;
     TextView due;
+    TextView description;
     OnTodoListener onTodoListener;
 
     ViewHolder(View view, OnTodoListener onTodoListener) {
       super(view);
       task = view.findViewById(R.id.todoCheckBox);
       due = view.findViewById(R.id.dueTime);
+      description = view.findViewById(R.id.detail);
       this.onTodoListener = onTodoListener;
       view.setOnClickListener(this);
     }
