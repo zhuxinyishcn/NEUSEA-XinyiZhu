@@ -1,5 +1,6 @@
 package edu.neu.mad_sea.xinyizhu.TodoApp;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ShareCompat;
+import androidx.fragment.app.DialogFragment;
 import edu.neu.mad_sea.xinyizhu.TodoApp.database.TodoRepository;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
+import edu.neu.mad_sea.xinyizhu.TodoApp.utils.TimePickerFragment;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
 
-public class CreateTask extends AppCompatActivity {
+public class CreateTask extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
   private EditText mEditText;
   private TextView mTextView;
@@ -119,5 +123,16 @@ public class CreateTask extends AppCompatActivity {
         .setChooserTitle(R.string.share_text_with)
         .setText(sb.toString())
         .startChooser();
+  }
+
+  @Override
+  public void onTimeSet(TimePicker timePicker, int i, int i1) {
+    Log.d("TAG", "onTimeSet: " + i + "" + i1);
+    mDeadline.setText(Utility.getCurrentTimestamp().substring(0, 11) + i + ":" + i1);
+  }
+
+  public void pickTime(View view) {
+    DialogFragment timePicker = new TimePickerFragment();
+    timePicker.show(getSupportFragmentManager(), "time picker");
   }
 }

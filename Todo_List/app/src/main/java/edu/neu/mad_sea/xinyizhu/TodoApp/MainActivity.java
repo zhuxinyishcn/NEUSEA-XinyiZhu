@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         taskList.addAll(toDoModels);
         todoAdapter.setToDoModelList(taskList);
         // todo: test to remind people
-//    setReminder4TodoItem();
+        setReminder4TodoItem();
       }
       todoAdapter.notifyDataSetChanged();
     });

@@ -42,7 +42,7 @@ public class NotificationHelper extends ContextWrapper {
     return new NotificationCompat.Builder(getApplicationContext(), channelID)
         .setContentTitle("Click me to finish a task~!")
         .setContentText("You have a task need complete, JUST DO IT!")
-        .setSmallIcon(R.drawable.ic_baseline_add);
+        .setSmallIcon(R.drawable.ic_baseline_add).setAutoCancel(true);
   }
 }
 
