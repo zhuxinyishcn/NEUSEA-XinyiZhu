@@ -57,6 +57,9 @@ public class ToDoModel implements Parcelable {
   }
 
   public String getDueTime() {
+    if (dueTime.length() < 10) {
+      return dueTime;
+    }
     return dueTime.substring(0, 10);
   }
 

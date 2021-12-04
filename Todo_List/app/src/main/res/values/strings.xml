@@ -6,6 +6,8 @@
   <string name="cancel">Cancel</string>
   <string name="activity2_name">actvity2</string>
   <string name="toast_message">Task Done!</string>
+  <string name="share_text_with">\"Share this text with: \"</string>
+
   <string-array name="planets_array">
     <item>Level: Urgent</item>
     <item>Level: Normal</item>

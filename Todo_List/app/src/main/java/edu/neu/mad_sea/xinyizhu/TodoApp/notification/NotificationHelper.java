@@ -40,8 +40,8 @@ public class NotificationHelper extends ContextWrapper {
 
   public NotificationCompat.Builder getChannelNotification() {
     return new NotificationCompat.Builder(getApplicationContext(), channelID)
-        .setContentTitle("Todo: XYZ")
-        .setContentText("test task need to complete, JUST DO IT!")
+        .setContentTitle("Click me to finish a task~!")
+        .setContentText("You have a task need complete, JUST DO IT!")
         .setSmallIcon(R.drawable.ic_baseline_add);
   }
 }

@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     this.mTodoRepository = new TodoRepository(this);
     initRecycleView();
     retrieveNotes();
-    // todo: test to remind people
-//    setReminder4TodoItem();
   }
 
   private void initRecycleView() {
@@ -72,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
       if (toDoModels != null) {
         taskList.addAll(toDoModels);
         todoAdapter.setToDoModelList(taskList);
-        setReminder4TodoItem();
+        // todo: test to remind people
+//    setReminder4TodoItem();
       }
       todoAdapter.notifyDataSetChanged();
     });
@@ -83,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   public void onTodoClick(int position) {
     Intent intent = new Intent(this, CreateTask.class);
     intent.putExtra("todo_item", taskList.get(position));
+//    intent.putExtra("deadline", taskList.get(position).getDueTime());
     startActivity(intent);
   }
 
