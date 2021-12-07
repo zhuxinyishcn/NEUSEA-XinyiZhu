@@ -20,7 +20,6 @@
     android:src="@drawable/ic_baseline_add"
     android:text="@string/button_main"
     android:textSize="24sp" />
-
   <TextView
     android:id="@+id/taskText"
     android:layout_width="wrap_content"
@@ -28,16 +27,27 @@
     android:layout_marginTop="16dp"
     android:layout_marginBottom="16dp"
     android:layout_marginStart="16dp"
-    android:text="Task to Do"
+    android:text="Task to Complete:"
     android:textSize="20sp" />
-
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/taskRecycleView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
     android:layout_below="@+id/taskText"
     android:nestedScrollingEnabled="true"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
   </androidx.recyclerview.widget.RecyclerView>
+  <com.google.android.gms.common.SignInButton
+    android:id="@+id/sign_in_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="12dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentTop="true" />
+
+
+
 </RelativeLayout>

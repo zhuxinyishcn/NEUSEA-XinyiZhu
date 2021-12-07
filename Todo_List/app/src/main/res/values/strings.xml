@@ -8,6 +8,17 @@
   <string name="toast_message">Task Done!</string>
   <string name="share_text_with">\"Share this text with: \"</string>
 
+  <string name="title_activity_profile">Profile</string>
+  <string name="first_fragment_label">First Fragment</string>
+  <!-- Strings used for fragments for navigation -->
+  <string name="second_fragment_label">Second Fragment</string>
+  <string name="next">Next</string>
+  <string name="previous">Previous</string>
+  <string name="hello_first_fragment">Hello first fragment</string>
+  <string name="server_client_id">786293019382-s4hk23qb24j19dubd2tl1m7q97kl1gf2.apps.googleusercontent.com</string>
+  <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+  <string name="title_activity_pofile">Pofile</string>
+  <string name="title_activity_maps">MapsActivity</string>
   <string-array name="planets_array">
     <item>Level: Urgent</item>
     <item>Level: Normal</item>

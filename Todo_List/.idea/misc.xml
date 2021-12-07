@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_main.xml" value="0.23958333333333334" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_maps.xml" value="0.21875" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_pitcu.xml" value="0.22282608695652173" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/activity_profile.xml" value="0.20652173913043478" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/create_task_layout.xml" value="0.24094202898550723" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/layout/task_items.xml" value="0.23958333333333334" />
+        <entry key="..\:/programmingLanguage/otherLanguage/Android/CS5520/NEUSEA-XinyiZhu/Todo_List/app/src/main/res/menu/todo_menu.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>
