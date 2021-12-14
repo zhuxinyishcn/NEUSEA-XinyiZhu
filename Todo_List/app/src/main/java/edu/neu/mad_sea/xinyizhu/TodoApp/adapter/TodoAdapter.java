@@ -13,7 +13,6 @@ import edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity;
 import edu.neu.mad_sea.xinyizhu.TodoApp.R;
 import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -25,6 +24,31 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
   private List<ToDoModel> toDoModelList = new ArrayList<>();
   private OnTodoListener mOnTodoListener;
   private List<ToDoModel> copy2DoList;
+  private Filter todoFilter = new Filter() {
+    @Override
+    protected FilterResults performFiltering(CharSequence constraint) {
+      List<ToDoModel> filteredList = new ArrayList<>();
+      if (constraint == null || constraint.length() == 0) {
+        filteredList.addAll(copy2DoList);
+      } else {
+        String pattern = constraint.toString().toLowerCase(Locale.ROOT).trim();
+        filteredList.addAll(
+            toDoModelList.stream().filter(toDoModel -> toDoModel.getTitle().trim().toLowerCase(
+                Locale.ROOT).contains(pattern) || toDoModel.getDetail().trim().toLowerCase(
+                Locale.ROOT).contains(pattern)).collect(Collectors.toList()));
+      }
+      FilterResults results = new FilterResults();
+      results.values = filteredList;
+      return results;
+    }
+
+    @Override
+    protected void publishResults(CharSequence constraint, FilterResults results) {
+      toDoModelList.clear();
+      toDoModelList.addAll((List) results.values);
+      notifyDataSetChanged();
+    }
+  };
 
   public TodoAdapter(MainActivity activity, OnTodoListener onTodoListener) {
     this.activity = activity;
@@ -36,7 +60,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
     this.copy2DoList = new ArrayList<>(toDoModelList);
     notifyDataSetChanged();
   }
-
 
   @NonNull
   @Override
@@ -66,32 +89,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
   public Filter getFilter() {
     return todoFilter;
   }
-
-  private Filter todoFilter = new Filter() {
-    @Override
-    protected FilterResults performFiltering(CharSequence constraint) {
-      List<ToDoModel> filteredList = new ArrayList<>();
-      if (constraint == null || constraint.length() == 0) {
-        filteredList.addAll(copy2DoList);
-      } else {
-        String pattern = constraint.toString().toLowerCase(Locale.ROOT).trim();
-        filteredList.addAll(
-            toDoModelList.stream().filter(toDoModel -> toDoModel.getTitle().trim().toLowerCase(
-                Locale.ROOT).contains(pattern) || toDoModel.getDetail().trim().toLowerCase(
-                Locale.ROOT).contains(pattern)).collect(Collectors.toList()));
-      }
-      FilterResults results = new FilterResults();
-      results.values = filteredList;
-      return results;
-    }
-
-    @Override
-    protected void publishResults(CharSequence constraint, FilterResults results) {
-      toDoModelList.clear();
-      toDoModelList.addAll((List) results.values);
-      notifyDataSetChanged();
-    }
-  };
 
   public interface OnTodoListener {
 

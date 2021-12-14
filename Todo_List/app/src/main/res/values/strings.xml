@@ -19,6 +19,7 @@
   <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
   <string name="title_activity_pofile">Pofile</string>
   <string name="title_activity_maps">MapsActivity</string>
+  <string name="task_to_complete">Task to Complete:</string>
   <string-array name="planets_array">
     <item>Level: Urgent</item>
     <item>Level: Normal</item>

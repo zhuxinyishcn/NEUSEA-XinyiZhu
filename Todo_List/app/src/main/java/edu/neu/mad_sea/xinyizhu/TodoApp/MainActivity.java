@@ -21,7 +21,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import edu.neu.mad_sea.xinyizhu.TodoApp.adapter.TodoAdapter;
@@ -31,7 +30,9 @@ import edu.neu.mad_sea.xinyizhu.TodoApp.notification.AlertReceiver;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoListener {
@@ -40,13 +41,17 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   private RecyclerView taskRecyclerView;
   private TodoAdapter todoAdapter;
   private TodoRepository mTodoRepository;
-  private GoogleSignInClient mGoogleSignInClient;
-
-  private ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,
+  private final ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(
+      ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.START
+          | ItemTouchHelper.END,
       ItemTouchHelper.RIGHT) {
     @Override
     public boolean onMove(@NonNull RecyclerView recyclerView,
         @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+      int fromPosition = viewHolder.getLayoutPosition();
+      int toPosition = target.getLayoutPosition();
+      Collections.swap(taskList, fromPosition, toPosition);
+      Objects.requireNonNull(recyclerView.getAdapter()).notifyItemMoved(fromPosition, toPosition);
       return false;
     }
 
@@ -55,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
       deleteTodo(taskList.get(viewHolder.getAbsoluteAdapterPosition()));
     }
   };
+  private GoogleSignInClient mGoogleSignInClient;
   private int RC_SIGN_IN = 0;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +72,14 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     initRecycleView();
     retrieveNotes();
     // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+    // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
 //        .requestIdToken("786293019382-bsvessus2l5dm2cs890as4lics3fmctp.apps.googleusercontent.com")
         .build();
     mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-    SignInButton signInButton = findViewById(R.id.sign_in_button);
-    signInButton.setOnClickListener(view -> signIn());
+//    SignInButton signInButton = findViewById(R.id.sign_in_button);
+//    signInButton.setOnClickListener(view -> signIn());
   }
 
 
