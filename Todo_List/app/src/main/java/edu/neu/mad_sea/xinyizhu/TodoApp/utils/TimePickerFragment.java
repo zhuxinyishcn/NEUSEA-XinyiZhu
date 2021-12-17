@@ -8,8 +8,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
 
+/**
+ * The type Time picker fragment.
+ */
 public class TimePickerFragment extends DialogFragment {
 
+  /**
+   * On create dialog dialog.
+   *
+   * @param savedInstanceState the saved instance state
+   * @return the dialog
+   */
   @NonNull
   @Override
   public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

@@ -7,8 +7,17 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import edu.neu.mad_sea.xinyizhu.TodoApp.MainActivity;
 
+/**
+ * The type Alert receiver.
+ */
 public class AlertReceiver extends BroadcastReceiver {
 
+  /**
+   * On receive.
+   *
+   * @param context the context
+   * @param intent  the intent
+   */
   @Override
   public void onReceive(Context context, Intent intent) {
     Intent i = new Intent(context, MainActivity.class);

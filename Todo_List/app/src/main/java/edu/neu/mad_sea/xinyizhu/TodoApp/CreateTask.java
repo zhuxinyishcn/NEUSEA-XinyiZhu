@@ -17,6 +17,9 @@ import edu.neu.mad_sea.xinyizhu.TodoApp.model.ToDoModel;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.TimePickerFragment;
 import edu.neu.mad_sea.xinyizhu.TodoApp.utils.Utility;
 
+/**
+ * The type Create task.
+ */
 public class CreateTask extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
   private EditText mEditText;
@@ -26,6 +29,11 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
   private boolean newTodoFlag = false;
   private TodoRepository mTodoRepository;
 
+  /**
+   * On create.
+   *
+   * @param savedInstanceState the saved instance state
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -91,13 +99,23 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
   }
 
 
+  /**
+   * Cancel todo.
+   *
+   * @param v the v
+   */
   public void cancelTodo(View v) {
     finish();
   }
 
 
+  /**
+   * Save todo.
+   *
+   * @param view the view
+   */
   public void saveTodo(View view) {
-
+    // check if it is new todo 
     if (newTodoFlag) {
       mToDoModel = new ToDoModel(0, mTextView.getText().toString(), mEditText.getText().toString(),
           mDeadline.getText().toString());
@@ -109,6 +127,11 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
     }
   }
 
+  /**
+   * Share text.
+   *
+   * @param view the view
+   */
   public void shareText(View view) {
 
     StringBuilder sb = new StringBuilder();
@@ -125,11 +148,23 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
         .startChooser();
   }
 
+  /**
+   * On time set.
+   *
+   * @param timePicker the time picker
+   * @param i          the
+   * @param i1         the 1
+   */
   @Override
   public void onTimeSet(TimePicker timePicker, int i, int i1) {
     mDeadline.setText(Utility.getCurrentTimestamp().substring(0, 11) + i + ":" + i1);
   }
 
+  /**
+   * Pick time.
+   *
+   * @param view the view
+   */
   public void pickTime(View view) {
     DialogFragment timePicker = new TimePickerFragment();
     timePicker.show(getSupportFragmentManager(), "time picker");

@@ -34,6 +34,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoListener {
 
   private List<ToDoModel> taskList = new ArrayList<>();
@@ -63,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   private int RC_SIGN_IN = 0;
   private View checkBox;
 
+  /**
+   * On create.
+   *
+   * @param savedInstanceState the saved instance state
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -88,9 +96,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     new ItemTouchHelper(simpleCallback).attachToRecyclerView(taskRecyclerView);
     todoAdapter = new TodoAdapter(this, this);
     taskRecyclerView.setAdapter(todoAdapter);
-    //   todo: you can test the notification bu here
-//    mTodoRepository
-//        .insertTodo(new ToDoModel(1, "test", "some detail info", Utility.futureTime()));
   }
 
   private void retrieveNotes() {
@@ -109,6 +114,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
 
   }
 
+  /**
+   * On todo click.
+   *
+   * @param position the position
+   */
   @Override
   public void onTodoClick(int position) {
     Intent intent = new Intent(this, CreateTask.class);
@@ -116,6 +126,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     startActivity(intent);
   }
 
+  /**
+   * Create todo.
+   *
+   * @param view the view
+   */
   public void createTodo(View view) {
     Intent intent = new Intent(this, CreateTask.class);
     startActivity(intent);
@@ -130,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     todoAdapter.notifyDataSetChanged();
   }
 
+  /**
+   * Send channel.
+   *
+   * @param time the time
+   */
   public void sendChannel(String time) {
     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     Intent intent = new Intent(this, AlertReceiver.class);
@@ -142,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     taskList.forEach(toDoModel -> sendChannel(toDoModel.getDueTime()));
   }
 
+  /**
+   * On destroy.
+   */
   @Override
   protected void onDestroy() {
     AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -156,6 +179,13 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     startActivityForResult(signInIntent, RC_SIGN_IN);
   }
 
+  /**
+   * On activity result.
+   *
+   * @param requestCode the request code
+   * @param resultCode  the result code
+   * @param data        the data
+   */
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -183,6 +213,12 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     }
   }
 
+  /**
+   * On create options menu boolean.
+   *
+   * @param menu the menu
+   * @return the boolean
+   */
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();

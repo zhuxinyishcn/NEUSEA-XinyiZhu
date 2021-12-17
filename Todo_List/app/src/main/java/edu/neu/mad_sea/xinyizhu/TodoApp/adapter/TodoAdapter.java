@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+/**
+ * The type Todo adapter.
+ */
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> implements
     Filterable {
 
@@ -50,28 +53,52 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
     }
   };
 
+  /**
+   * Instantiates a new Todo adapter.
+   *
+   * @param activity       the activity
+   * @param onTodoListener the on todo listener
+   */
   public TodoAdapter(MainActivity activity, OnTodoListener onTodoListener) {
     this.activity = activity;
     this.mOnTodoListener = onTodoListener;
   }
 
+  /**
+   * Sets to do model list.
+   *
+   * @param toDoModelList the to do model list
+   */
   public void setToDoModelList(List<ToDoModel> toDoModelList) {
     this.toDoModelList = toDoModelList;
     this.copy2DoList = new ArrayList<>(toDoModelList);
     notifyDataSetChanged();
   }
 
+  /**
+   * On create view holder todo adapter . view holder.
+   *
+   * @param parent   the parent
+   * @param viewType the view type
+   * @return the todo adapter . view holder
+   */
   @NonNull
   @Override
-  public TodoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View itemView = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.task_items, parent, false);
     return new ViewHolder(itemView, mOnTodoListener);
 
   }
 
+  /**
+   * On bind view holder.
+   *
+   * @param holder   the holder
+   * @param position the position
+   */
   @Override
-  public void onBindViewHolder(@NonNull TodoAdapter.ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     ToDoModel item = toDoModelList.get(position);
     // check if complete
     holder.task.setChecked(item.getStatus() != 0);
@@ -80,28 +107,67 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
     holder.description.setText("Description:" + item.getTitle().concat("..."));
   }
 
+  /**
+   * Gets item count.
+   *
+   * @return the item count
+   */
   @Override
   public int getItemCount() {
     return toDoModelList.size();
   }
 
+  /**
+   * Gets filter.
+   *
+   * @return the filter
+   */
   @Override
   public Filter getFilter() {
     return todoFilter;
   }
 
+  /**
+   * The interface On todo listener.
+   */
   public interface OnTodoListener {
 
+    /**
+     * On todo click.
+     *
+     * @param position the position
+     */
     void onTodoClick(int position);
   }
 
+  /**
+   * The type View holder.
+   */
   public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    /**
+     * The Task.
+     */
     CheckBox task;
+    /**
+     * The Due.
+     */
     TextView due;
+    /**
+     * The Description.
+     */
     TextView description;
+    /**
+     * The On todo listener.
+     */
     OnTodoListener onTodoListener;
 
+    /**
+     * Instantiates a new View holder.
+     *
+     * @param view           the view
+     * @param onTodoListener the on todo listener
+     */
     ViewHolder(View view, OnTodoListener onTodoListener) {
       super(view);
       task = view.findViewById(R.id.todoCheckBox);
@@ -111,6 +177,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
       view.setOnClickListener(this);
     }
 
+    /**
+     * On click.
+     *
+     * @param view the view
+     */
     @Override
     public void onClick(View view) {
       onTodoListener.onTodoClick(getAbsoluteAdapterPosition());
