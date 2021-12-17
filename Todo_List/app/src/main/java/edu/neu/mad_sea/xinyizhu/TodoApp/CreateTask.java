@@ -3,7 +3,6 @@ package edu.neu.mad_sea.xinyizhu.TodoApp;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -57,8 +56,8 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
   }
 
   private void updateNote() {
-    mToDoModel.setTitle(mTextView.getText().toString());
     mToDoModel.setDetail(mEditText.getText().toString());
+    mToDoModel.setTitle(mTextView.getText().toString());
     mTodoRepository.updateTodo(mToDoModel);
   }
 
@@ -73,7 +72,6 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
       return newTodoFlag;
     }
     if (getIntent().hasExtra("deadline")) {
-      Log.d("TAG", "getTodoItem: " + getIntent().getParcelableExtra("deadline"));
 //      this.mDeadline = getIntent().getParcelableExtra("deadline");
     }
     this.newTodoFlag = true;
@@ -87,8 +85,9 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
   }
 
   private void setTodoProperties() {
-    mEditText.setText(mToDoModel.getTitle());
-    mTextView.setText(mToDoModel.getDetail());
+    mTextView.setText(mToDoModel.getTitle());
+    mEditText.setText(mToDoModel.getDetail());
+    mDeadline.setText(Utility.futureTime());
   }
 
 
@@ -98,13 +97,14 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
 
 
   public void saveTodo(View view) {
+
     if (newTodoFlag) {
-      mToDoModel = new ToDoModel(1, mTextView.getText().toString(), mEditText.getText().toString(),
-          Utility.getCurrentTimestamp());
+      mToDoModel = new ToDoModel(0, mTextView.getText().toString(), mEditText.getText().toString(),
+          mDeadline.getText().toString());
       saveTodo2Repository();
       finish();
     } else {
-      mToDoModel.setDueTime(Utility.futureTime());
+      mToDoModel.setDueTime(mDeadline.getText().toString());
       updateNote();
     }
   }
@@ -127,7 +127,6 @@ public class CreateTask extends AppCompatActivity implements TimePickerDialog.On
 
   @Override
   public void onTimeSet(TimePicker timePicker, int i, int i1) {
-    Log.d("TAG", "onTimeSet: " + i + "" + i1);
     mDeadline.setText(Utility.getCurrentTimestamp().substring(0, 11) + i + ":" + i1);
   }
 

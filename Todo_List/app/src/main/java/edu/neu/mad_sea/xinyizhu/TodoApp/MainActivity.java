@@ -33,7 +33,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTodoListener {
 
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   };
   private GoogleSignInClient mGoogleSignInClient;
   private int RC_SIGN_IN = 0;
+  private View checkBox;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
     // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
         .requestEmail()
-//        .requestIdToken("786293019382-bsvessus2l5dm2cs890as4lics3fmctp.apps.googleusercontent.com")
         .build();
     mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 //    SignInButton signInButton = findViewById(R.id.sign_in_button);
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
         taskList.addAll(toDoModels);
         todoAdapter.setToDoModelList(taskList);
         // todo: test to remind people
-//        setReminder4TodoItem();
+        setReminder4TodoItem();
       }
       todoAdapter.notifyDataSetChanged();
     });
@@ -153,15 +152,8 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   }
 
   private void signIn() {
-//    Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-//    startActivityForResult(signInIntent, RC_SIGN_IN);
-    taskList = taskList.stream()
-        .filter(task -> task.getTitle().contains("232") || task.getDetail().contains("232"))
-        .collect(
-            Collectors.toList());
-    Log.d("TAG", "signIn: " + this.taskList.size());
-    todoAdapter.setToDoModelList(taskList);
-    todoAdapter.notifyDataSetChanged();
+    Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+    startActivityForResult(signInIntent, RC_SIGN_IN);
   }
 
   @Override
@@ -180,7 +172,6 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnTod
   private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
     try {
       GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-      Log.d("TAG", "handleSignInResult: " + account.getAccount() + account.getEmail());
       // Signed in successfully, show authenticated UI.
 //      Intent i = new Intent(MainActivity.this, pitcu.class);
 //      startActivity(i);

@@ -75,9 +75,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> im
     ToDoModel item = toDoModelList.get(position);
     // check if complete
     holder.task.setChecked(item.getStatus() != 0);
-    holder.task.setText(item.getTitle());
+    holder.task.setText(item.getDetail());
     holder.due.setText(item.getDueTime());
-    holder.description.setText("Description:" + item.getDetail().concat("..."));
+    holder.description.setText("Description:" + item.getTitle().concat("..."));
   }
 
   @Override

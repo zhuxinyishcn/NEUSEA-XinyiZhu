@@ -38,7 +38,6 @@ public class ToDoModel implements Parcelable {
     status = in.readInt();
     title = in.readString();
     detail = in.readString();
-
   }
 
   public ToDoModel(int status, String title, String detail, String dueTime) {
